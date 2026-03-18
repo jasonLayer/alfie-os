@@ -114,6 +114,13 @@ Radhouse Games HQ: no activity
 StyleIcon HQ: 2 completed, 4 in progress, 1 flag
 ```
 
+## After Completion
+
+Record that weekly ran (for autopilot reminders):
+```bash
+date +%Y-%m-%d > ~/.claude/hooks/.last-weekly
+```
+
 ## Guardrails
 
 - **Scan all 6 databases per HQ** — never skip any, even if empty

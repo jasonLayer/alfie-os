@@ -1,9 +1,4 @@
 {
-  "enabledPlugins": {
-    "compound-engineering@every-marketplace": true,
-    "notion-workspace-plugin@notion-plugin-marketplace": true,
-    "skill-creator@claude-plugins-official": true
-  },
   "permissions": {
     "allow": [
       "Read",
@@ -90,50 +85,41 @@
       "mcp__claude_ai_Google_Calendar__gcal_update_event"
     ]
   },
-  "statusLine": {
-    "type": "command",
-    "command": "npx -y ccstatusline@latest",
-    "padding": 0
-  },
   "hooks": {
     "PreToolUse": [
       {
-        "_tag": "ccstatusline-managed",
+        "matcher": "Skill",
         "hooks": [
           {
             "type": "command",
             "command": "npx -y ccstatusline@latest --hook"
           }
-        ],
-        "matcher": "Skill"
+        ]
       },
       {
-        "_tag": "quality-gate",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
             "command": "~/.claude/hooks/quality-gate.sh destructive-guard"
           }
-        ],
-        "matcher": "Bash"
+        ]
       }
     ],
     "PostToolUse": [
       {
-        "_tag": "quality-gate",
+        "matcher": "Write|Edit",
         "hooks": [
           {
             "type": "command",
             "command": "~/.claude/hooks/quality-gate.sh lint-on-save",
             "async": true
           }
-        ],
-        "matcher": "Write|Edit"
+        ]
       }
     ],
     "Stop": [
       {
-        "_tag": "quality-gate",
         "hooks": [
           {
             "type": "command",
@@ -143,9 +129,19 @@
         ]
       }
     ],
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/autopilot.sh"
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
-        "_tag": "ccstatusline-managed",
         "hooks": [
           {
             "type": "command",
@@ -154,5 +150,16 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "compound-engineering@every-marketplace": true,
+    "notion-workspace-plugin@notion-plugin-marketplace": true,
+    "skill-creator@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true
 }

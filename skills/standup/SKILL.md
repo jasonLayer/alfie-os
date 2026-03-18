@@ -59,6 +59,13 @@ Good morning! Here's your standup:
 - [any blockers from yesterday or tasks] or "None — clear path"
 ```
 
+## After Completion
+
+Record that standup ran today (for autopilot reminders):
+```bash
+date +%Y-%m-%d > ~/.claude/hooks/.last-standup
+```
+
 ## Edge Cases
 
 - **No daily log yesterday:** Say "No log from yesterday" and skip that section
