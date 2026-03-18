@@ -1,0 +1,33 @@
+# Cache and transient state
+backups/
+cache/
+debug/
+file-history/
+ide/
+paste-cache/
+plugins/
+portable/
+sessions/
+session-env/
+shell-snapshots/
+stats-cache.json
+tasks/
+telemetry/
+todos/
+
+# History (large, changes every session)
+history.jsonl
+
+# Auth and sensitive
+mcp-needs-auth-cache.json
+.credentials.json
+
+# OS files
+.DS_Store
+
+# Backup files
+*.bak
+*.orig
+
+# Project-specific memory (lives with each project, not here)
+projects/
