@@ -4,7 +4,92 @@
     "notion-workspace-plugin@notion-plugin-marketplace": true,
     "skill-creator@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true,
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "WebSearch",
+      "WebFetch",
+      "Agent",
+      "Skill",
+      "TaskCreate",
+      "TaskUpdate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "NotebookEdit",
+      "Bash(npm run *)",
+      "Bash(npm test *)",
+      "Bash(npm start *)",
+      "Bash(npx *)",
+      "Bash(make *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git checkout -b*)",
+      "Bash(git branch*)",
+      "Bash(git stash*)",
+      "Bash(git init*)",
+      "Bash(git merge*)",
+      "Bash(git worktree*)",
+      "Bash(git remote*)",
+      "Bash(git fetch*)",
+      "Bash(git pull*)",
+      "Bash(git rev-parse*)",
+      "Bash(git symbolic-ref*)",
+      "Bash(git rm*)",
+      "Bash(ls*)",
+      "Bash(mkdir*)",
+      "Bash(wc*)",
+      "Bash(echo*)",
+      "Bash(cd *)",
+      "Bash(python*)",
+      "Bash(pip*)",
+      "Bash(node *)",
+      "Bash(gh *)",
+      "Bash(ruff*)",
+      "Bash(pytest*)",
+      "Bash(uvicorn*)",
+      "Bash(grep*)",
+      "Bash(which*)",
+      "Bash(cat*)",
+      "Bash(head*)",
+      "Bash(tail*)",
+      "Bash(find*)",
+      "Bash(current_branch*)",
+      "Bash(default_branch*)",
+      "mcp__notion-personal__*",
+      "mcp__claude_ai_Notion__*",
+      "mcp__claude_ai_Google_Calendar__*",
+      "mcp__claude_ai_Gmail__gmail_search_messages",
+      "mcp__claude_ai_Gmail__gmail_read_message",
+      "mcp__claude_ai_Gmail__gmail_read_thread",
+      "mcp__claude_ai_Gmail__gmail_get_profile",
+      "mcp__claude_ai_Gmail__gmail_list_labels",
+      "mcp__claude_ai_Slack__slack_read_*",
+      "mcp__claude_ai_Slack__slack_search_*",
+      "mcp__plugin_compound-engineering_context7__*",
+      "mcp__claude_ai_Figma__*"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(git reset*)",
+      "Bash(git checkout .)",
+      "Bash(git checkout -- *)",
+      "Bash(rm *)",
+      "mcp__claude_ai_Slack__slack_send_*",
+      "mcp__claude_ai_Slack__slack_schedule_*",
+      "mcp__claude_ai_Gmail__gmail_create_draft",
+      "mcp__claude_ai_Google_Calendar__gcal_create_event",
+      "mcp__claude_ai_Google_Calendar__gcal_delete_event",
+      "mcp__claude_ai_Google_Calendar__gcal_update_event"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
@@ -21,6 +106,41 @@
           }
         ],
         "matcher": "Skill"
+      },
+      {
+        "_tag": "quality-gate",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/quality-gate.sh destructive-guard"
+          }
+        ],
+        "matcher": "Bash"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "_tag": "quality-gate",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/quality-gate.sh lint-on-save",
+            "async": true
+          }
+        ],
+        "matcher": "Write|Edit"
+      }
+    ],
+    "Stop": [
+      {
+        "_tag": "quality-gate",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/quality-gate.sh stop-gate",
+            "timeout": 120
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
