@@ -1,10 +1,10 @@
 #!/bin/bash
 # Alfie Setup — installs the shared Claude Code config for the team
-# Usage: bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/claude-config/team/setup.sh)
+# Usage: bash <(curl -fsSL https://raw.githubusercontent.com/jasonLayer/alfie-os/team/setup.sh)
 
 set -euo pipefail
 
-REPO="YOUR_ORG/claude-config"
+REPO="jasonLayer/alfie-os"
 BRANCH="team"
 CLAUDE_DIR="$HOME/.claude"
 TMP_DIR=$(mktemp -d)
