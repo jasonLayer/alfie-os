@@ -15,6 +15,11 @@ INPUT=$(cat)
 MODE="${1:-}"
 CWD=$(echo "$INPUT" | jq -r '.cwd // empty')
 
+# Skip in worktrees — they lack node_modules, so tsc/lint/npm will fail spuriously
+if echo "$CWD" | grep -q '\.claude/worktrees'; then
+  exit 0
+fi
+
 # ---------------------------------------------------------------------------
 # Mode: destructive-guard (PreToolUse → Bash)
 # Blocks dangerous commands before they execute.

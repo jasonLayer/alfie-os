@@ -116,6 +116,15 @@
             "async": true
           }
         ]
+      },
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/mark-skill-done.sh"
+          }
+        ]
       }
     ],
     "Stop": [
@@ -161,5 +170,6 @@
     "notion-workspace-plugin@notion-plugin-marketplace": true,
     "skill-creator@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "model": "sonnet"
 }

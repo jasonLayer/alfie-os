@@ -10,35 +10,25 @@ set -euo pipefail
 [ "${QUALITY_GATE_SKIP:-0}" = "1" ] && exit 0
 
 HOOKS_DIR="$HOME/.claude/hooks"
-STANDUP_FILE="$HOOKS_DIR/.last-standup"
+PROJECT_KEY=$(echo "$PWD" | shasum | cut -c1-8)
+STANDUP_FILE="$HOOKS_DIR/.last-standup-$PROJECT_KEY"
 WEEKLY_FILE="$HOOKS_DIR/.last-weekly"
 TODAY=$(date +%Y-%m-%d)
 DOW=$(date +%u)  # 1=Monday, 7=Sunday
 
-messages=()
+instructions=()
 
-# --- Standup check ---
-if [ -f "$STANDUP_FILE" ]; then
-  last_standup=$(cat "$STANDUP_FILE" 2>/dev/null || echo "")
-else
-  last_standup=""
-fi
+# --- Session start image ---
+instructions+=("Show the Alfie greeting image at ~/.claude/memory/alfie-character/alfie-at-desk.png using the Read tool as part of your session greeting.")
 
+# --- Standup check (per-project) ---
+last_standup=$(cat "$STANDUP_FILE" 2>/dev/null || echo "")
 if [ "$last_standup" != "$TODAY" ]; then
-  if [ -z "$last_standup" ]; then
-    messages+=("You haven't run /standup yet. Start your day with a quick briefing.")
-  else
-    messages+=("Last standup was $last_standup. Run /standup to catch up on what's happened since.")
-  fi
+  instructions+=("Run /standup now as your first action before responding to the user. Do not wait to be asked.")
 fi
 
 # --- Weekly check ---
-if [ -f "$WEEKLY_FILE" ]; then
-  last_weekly=$(cat "$WEEKLY_FILE" 2>/dev/null || echo "")
-else
-  last_weekly=""
-fi
-
+last_weekly=$(cat "$WEEKLY_FILE" 2>/dev/null || echo "")
 weekly_due=false
 if [ -z "$last_weekly" ]; then
   weekly_due=true
@@ -54,22 +44,21 @@ print((date.today() - last).days)
 fi
 
 if [ "$weekly_due" = true ]; then
-  if [ "$DOW" = "1" ]; then
-    messages+=("It's Monday — time for /weekly to update all HQ pages.")
-  elif [ -z "$last_weekly" ]; then
-    messages+=("You haven't run /weekly yet. Run it to generate HQ updates across all teamspaces.")
-  else
-    messages+=("Last weekly update was $last_weekly (7+ days ago). Run /weekly when you're ready.")
-  fi
+  instructions+=("After standup completes (or if standup already ran today), also run /weekly to update all HQ pages.")
 fi
 
 # --- Output ---
-if [ ${#messages[@]} -gt 0 ]; then
+if [ ${#instructions[@]} -gt 0 ]; then
   combined=""
-  for msg in "${messages[@]}"; do
-    combined+="- $msg\n"
+  for inst in "${instructions[@]}"; do
+    combined+="$inst "
   done
-  jq -n --arg msg "$(echo -e "$combined")" '{"systemMessage": $msg}'
+  jq -n --arg ctx "$combined" '{
+    "hookSpecificOutput": {
+      "hookEventName": "SessionStart",
+      "additionalContext": $ctx
+    }
+  }'
 fi
 
 exit 0
