@@ -79,6 +79,17 @@ if [ ! -f "$CLAUDE_DIR/settings.json" ] && [ -f "$PORTABLE/../settings.json" ]; 
   cp "$PORTABLE/../settings.json" "$CLAUDE_DIR/settings.json"
 fi
 
+# --- CCStatusLine config symlink ---
+if [ -f "$TMP_DIR/claude-config/config/ccstatusline/settings.json" ]; then
+  echo "  Linking CCStatusLine config..."
+  mkdir -p "$HOME/.config/ccstatusline"
+  # Copy into ~/.claude so the symlink target exists on this machine
+  mkdir -p "$CLAUDE_DIR/config/ccstatusline"
+  cp "$TMP_DIR/claude-config/config/ccstatusline/settings.json" "$CLAUDE_DIR/config/ccstatusline/settings.json"
+  ln -sf "$CLAUDE_DIR/config/ccstatusline/settings.json" "$HOME/.config/ccstatusline/settings.json"
+  echo "       ~/.config/ccstatusline/settings.json symlinked"
+fi
+
 # --- Cleanup ---
 rm -rf "$TMP_DIR"
 

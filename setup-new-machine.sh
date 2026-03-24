@@ -55,6 +55,16 @@ for mem_file in "$PORTABLE_DIR/shared-memory/"*.md; do
   fi
 done
 
+# --- Step 5: CCStatusLine config symlink ---
+echo "[5/5] Linking CCStatusLine config..."
+mkdir -p "$HOME/.config/ccstatusline"
+if [ -f "$CLAUDE_DIR/config/ccstatusline/settings.json" ]; then
+  ln -sf "$CLAUDE_DIR/config/ccstatusline/settings.json" "$HOME/.config/ccstatusline/settings.json"
+  echo "  -> ~/.config/ccstatusline/settings.json -> ~/.claude/config/ccstatusline/settings.json"
+else
+  echo "  SKIP: config/ccstatusline/settings.json not found in repo"
+fi
+
 echo ""
 echo "=== Setup complete! ==="
 echo ""
