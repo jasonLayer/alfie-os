@@ -37,6 +37,20 @@ At the start of longer sessions (or when Jason asks), check the Alfie Notion pag
 
 **How to apply:** Any time a conversation includes feedback about Alfie's behavior, voice, priorities, or knowledge — treat it as a change to both systems, not just the current conversation.
 
+### CCStatusLine Config Sync
+
+CCStatusLine config is tracked in the alfie-os repo:
+- **Canonical file:** `~/.claude/config/ccstatusline/settings.json`
+- **Live location:** `~/.config/ccstatusline/settings.json` → symlinked to the canonical file
+- **Repo:** `https://github.com/jasonLayer/alfie-os` (branch: `main`)
+
+If Alfie updates `~/.claude/config/ccstatusline/settings.json` for any reason (new widget, layout change, etc.):
+
+1. Stage and commit the change: `git -C ~/.claude add config/ccstatusline/settings.json && git -C ~/.claude commit -m "..." && git -C ~/.claude push origin main`
+2. Tell Jason: "Updated CCStatusLine config and pushed to alfie-os. Run `git -C ~/.claude pull` on your other machines to sync."
+
+If Jason changes the config on another machine and pushes, Alfie should pull: `git -C ~/.claude pull`
+
 ### Project Registry Sync
 
 The project registry also lives in both places:
