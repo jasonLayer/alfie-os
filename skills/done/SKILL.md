@@ -37,6 +37,10 @@ There is no CE equivalent for this step — this is Alfie's own closure process.
    - If found:
      - Create a database row in the project's Release Notes DB using `mcp__notion-personal__notion-create-pages` with `data_source_id` parent
      - Title: `Release [today's date] — [Name]`, Date: today
+     - **Link the Plan relation (REQUIRED):** Find the matching Plan row in the Plans DB by searching for the plan name. Set the `Plans` property on the release note to the plan's URL. Since Notion relations are two-way, this also populates `Release Note` on the plan automatically.
+       - If the plan was created this session: use the saved URL directly
+       - If from a prior session: use `mcp__notion-personal__notion-search` to find it by name in the Plans DB, then link
+       - If no matching plan exists (hotfix with no plan): skip silently — do not error
      - Include the Notion link in the completion message
    - If NOT found in the registry: skip silently.
 
