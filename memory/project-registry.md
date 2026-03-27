@@ -10,9 +10,9 @@ type: reference
 |---|---|---|---|
 | 8thday.io | 78d0d32a-2816-82ac-bb6c-8102dd589ee1 | 1d1c5dbc-8d59-45ba-ba60-05d6d4fbdf86 | personal |
 | Icon | 31e0d32a-2816-8114-824a-d7208341ee85 | e1a3138e-a40b-4336-9b11-e8434b6b0c77 | personal |
-| majorGTM | 2590d32a-2816-8033-85cb-cf9a2d964df1 | 2610d32a-2816-80d5-a866-000be2b659af | personal |
+| majorGTM | 3300d32a-2816-81a7-af4b-cea16798887b | 2610d32a-2816-80d5-a866-000be2b659af | personal |
 | PoaM | 2d50d32a-2816-812b-8855-dc198be78feb | 9fdd8de2-39c2-406b-9956-738bdafc05c0 | personal |
-| Radhouse Games | 3080d32a-2816-81ba-88cc-e9a152a56eff | — | personal |
+| Radhouse Games | 3300d32a-2816-818e-ba02-c28cb6a5a619 | 15a3ccfb-fa34-4a0e-8f3d-e0ef0d7f1479 | personal |
 
 > Teamspaces marked `—` for Docs DB need their HQ set up with a docs database before projects can be added.
 
