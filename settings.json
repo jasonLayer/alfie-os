@@ -136,6 +136,15 @@
             "timeout": 120
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/alfie-sync.sh",
+            "timeout": 30
+          }
+        ]
       }
     ],
     "SessionStart": [
