@@ -1,3 +1,9 @@
+---
+name: plan
+description: Create a new implementation plan from a spec or idea. Use when the user says "plan this", "create a plan", "let's plan", or provides a spec and wants a structured plan. Runs pre-flight registry check, calls CE plan engine, then auto-publishes to Notion Plans DB.
+argument-hint: "[feature or topic to plan]"
+---
+
 Create a new plan for: $ARGUMENTS
 
 ## Pre-Flight: Project Registry Check

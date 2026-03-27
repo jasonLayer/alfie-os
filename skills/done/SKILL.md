@@ -1,3 +1,9 @@
+---
+name: done
+description: Close the loop on a completed plan — runs Definition of Done checklist, writes release notes, cleans up plan file, auto-publishes to Notion Release Notes DB, and gives a session recap. Use when the user says "we're done", "close this out", "ship it", or after all tasks are complete.
+argument-hint: "[plan name or topic]"
+---
+
 Complete the plan and close the loop: $ARGUMENTS
 
 There is no CE equivalent for this step — this is Alfie's own closure process.

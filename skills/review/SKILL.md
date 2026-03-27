@@ -1,3 +1,9 @@
+---
+name: review
+description: Review current branch changes with multi-agent structured code review. Use when the user says "review this", "review the PR", "code review", or before merging. Runs CE multi-agent review then adds Alfie's Definition of Done checklist.
+argument-hint: "[optional: branch name or PR number]"
+---
+
 Review the current branch changes using Compound Engineering's multi-agent review.
 
 ## Core Engine

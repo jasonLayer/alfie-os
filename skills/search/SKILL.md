@@ -1,10 +1,10 @@
 ---
-description: Search the user’s Notion workspace using the Notion MCP server and Notion Workspace Skill.
+name: search
+description: Search the user's Notion workspace using the Notion MCP server and Notion Workspace Skill.
 argument-hint: query terms
 ---
 
-Use the Notion Workspace Skill together with the `notionApi` MCP server to search the user's Notion workspace
-for content related to `$ARGUMENTS`.
+Use the Notion Workspace Skill together with the `mcp__notion-personal` MCP server to search the user's Notion workspace for content related to `$ARGUMENTS`.
 
 Behavior:
 

@@ -1,11 +1,12 @@
 ---
+name: create-page
 description: Create a new Notion page, optionally under a specific parent, using the Notion Workspace Skill and Notion MCP server.
 argument-hint: "Title of page [optional parent name or ID]"
 ---
 
 You are creating a new Notion page for the user.
 
-Use the Notion Workspace Skill and `notionApi` MCP server to:
+Use the Notion Workspace Skill and `mcp__notion-personal` MCP server to:
 
 1. Parse `$ARGUMENTS` into:
    - Page title

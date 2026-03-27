@@ -1,11 +1,12 @@
 ---
+name: database-query
 description: Query a Notion database by name or ID and return structured, readable results.
 argument-hint: 'database name or ID; filters (optional)'
 ---
 
 You are querying a Notion database on the user's behalf.
 
-Use the Notion Workspace Skill and `notionApi` MCP server to:
+Use the Notion Workspace Skill and `mcp__notion-personal` MCP server to:
 
 1. Interpret `$ARGUMENTS` as:
    - Target database (by name or ID)

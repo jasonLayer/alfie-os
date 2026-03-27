@@ -1,3 +1,9 @@
+---
+name: work
+description: Execute an implementation plan sequentially with TDD enforcement. Use when the user says "work on the plan", "start working", "implement this", or provides a plan and wants sequential interactive execution. Forces TDD Iron Law regardless of CE engine behavior.
+argument-hint: "[plan name or path]"
+---
+
 Start working on the plan: $ARGUMENTS
 
 ## Core Engine

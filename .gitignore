@@ -30,3 +30,7 @@ mcp-needs-auth-cache.json
 
 # Project-specific memory (lives with each project, not here)
 projects/
+
+# Runtime state (standup/weekly timestamps, ephemeral)
+hooks/.last-standup*
+hooks/.last-weekly*

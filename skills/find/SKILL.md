@@ -1,10 +1,10 @@
 ---
+name: find
 description: Quickly find pages or databases in Notion by title keywords.
 argument-hint: query terms
 ---
 
-Use the Notion Workspace Skill and `notionApi` MCP server to quickly locate pages or databases whose titles
-match `$ARGUMENTS`.
+Use the Notion Workspace Skill and `mcp__notion-personal` MCP server to quickly locate pages or databases whose titles match `$ARGUMENTS`.
 
 Behavior:
 

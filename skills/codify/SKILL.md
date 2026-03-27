@@ -1,3 +1,9 @@
+---
+name: codify
+description: Capture a learning or solution from current work into the knowledge base. Use when the user says "codify this", "capture this learning", "document this solution", or after solving a tricky problem worth preserving. Auto-publishes to Notion Learnings DB.
+argument-hint: "[topic or learning to codify]"
+---
+
 Codify a learning from the current work: $ARGUMENTS
 
 ## Core Engine
